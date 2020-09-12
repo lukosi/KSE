@@ -1,0 +1,5 @@
+class PowerPlant:
+
+    plants = []
+
+    pass
