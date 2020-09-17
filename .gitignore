@@ -1,2 +1,3 @@
 .idea/
 KSE_venv/
+__pycache__
