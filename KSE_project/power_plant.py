@@ -1,4 +1,5 @@
 import custom_exceptions as ex
+import time
 
 
 class PowerPlant:
@@ -8,11 +9,12 @@ class PowerPlant:
     plants_name = {}
     plants_type = ["wk", "wk_new"]
 
-    def __init__(self, name, plant_type, p_min, p_max, year_start, year_end):
+    def __init__(self, name, plant_type, p_min, p_max, efficiency, year_start, year_end):
         self.name = name
         self.plant_type = plant_type
         self.p_min = p_min
         self.p_max = p_max
+        self.efficiency = efficiency
         self.year_start = year_start
         self.year_end = year_end
         self.bands = {}
@@ -43,8 +45,12 @@ class PowerPlant:
             self.bands[i] = self.p_min + ((self.p_max - self.p_min) / n_bands) * i
 
 
-plant1 = PowerPlant("KOZ 1", "wk_new", 100, 500, 2010, 2040)
-plant2 = PowerPlant("KOZ 2", "wk", 50, 200, 1990, 2025)
+start = time.perf_counter()
+
+plant1 = PowerPlant("KOZ 1", "wk_new", 100, 500, 0.4, 2010, 2040)
+plant2 = PowerPlant("KOZ 2", "wk", 50, 200, 0.35, 1990, 2025)
+
+finish = time.perf_counter()
 
 # drafts
 
@@ -53,8 +59,4 @@ plant2 = PowerPlant("KOZ 2", "wk", 50, 200, 1990, 2025)
 # print(PowerPlant.plants[1].name)
 # print(PowerPlant.plants_name[0])
 print(plant1.bands[2])
-
-
-
-
-
+print(f'Finished in {round(finish - start, 4)} second(s)')
